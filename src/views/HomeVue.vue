@@ -178,7 +178,9 @@
             />
           </div>
         </div>
-        <button class="btn-sellers text-uppercase text-white opacity">
+        <button
+          class="btn-send-sellers opacity text-uppercase text-white opacity"
+        >
           shop Now
         </button>
       </div>
@@ -210,7 +212,7 @@ export default {
 /* satart BackGround */
 .background {
   height: 100vh;
-  background-image: url("@/assets/img_1.png");
+  background-image: url("@/assets/image_home.png");
   background-size: cover;
   background-position: center;
 }
@@ -265,7 +267,7 @@ export default {
 }
 /* End Boxes Buy Now */
 /* satrt Top Sellers */
-.btn-sellers {
+.btn-send-sellers {
   background-color: #024e82;
   padding: 10px 18px;
   border: none;
@@ -301,7 +303,7 @@ export default {
   .box {
     padding-bottom: 20px;
   }
-  .btn-sellers {
+  .btn-send-sellers {
     font-size: 10px;
   }
   .btn-buy {
@@ -325,7 +327,7 @@ export default {
   .parg-box {
     font-size: 12px;
   }
-  .btn-sellers {
+  .btn-send-sellers {
     font-size: 16px;
   }
   .title-footer {

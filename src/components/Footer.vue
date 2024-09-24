@@ -66,7 +66,7 @@
                 <input
                   type="emial"
                   placeholder="enter you email"
-                  class="text-capitalize mt-3 input-foot"
+                  class="text-capitalize mt-3 input-foot input-hover"
                 />
                 <i class="fa-solid fa-angle-right icon-animations"></i>
               </div>
@@ -105,22 +105,13 @@ export default {
   transition: 0.4s;
   transform: translateX(8px);
 }
-.parg-animate a:hover {
+.parg-animate:hover a {
   color: #47a9ea;
 }
 .input-foot {
   border: none;
   border-bottom: 2px solid #1d1d1d;
   padding: 5px;
-}
-
-.input-foot:hover {
-  border-color: #47a9ea;
-  color: #47a9ea;
-}
-.input-foot:focus {
-  outline: none;
-  color: #47a9ea;
 }
 .input-footer:hover .icon-animations {
   animation: left 0.4s ease-in-out infinite;

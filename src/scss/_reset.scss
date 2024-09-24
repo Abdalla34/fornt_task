@@ -17,7 +17,7 @@ a {
 }
 p {
   margin: 0;
-  padding: 0px 0px 8px 0px;
+  padding: 0;
 }
 .title {
   font-family: "Arimo", sans-serif;
@@ -64,11 +64,55 @@ p {
   margin-bottom: 50px;
 }
 
+.background-hand {
+  position: relative;
+}
+.title-sec-backgeound {
+  position: absolute;
+  top: 63%;
+  left: 14%;
+}
+
+.image-sec-background img {
+  width: 100%;
+}
+
 .btn-buy {
   color: #024e82;
   padding: 8px 15px;
   border-radius: 15px;
   border: none;
+}
+.btn-send-sellers {
+  background-color: #024e82;
+  padding: 10px 18px;
+  border: none;
+  border-radius: 16px;
+}
+.input-hover:hover {
+  border-color: #47a9ea;
+  color: #47a9ea;
+  transition: all 0.4s;
+}
+.input-hover:focus {
+  outline: none;
+  color: #47a9ea;
+}
+.input-color {
+  border: none;
+  border: 1px solid #ebebeb;
+}
+.links-nav {
+  color: black;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-family: "Arimo" sans-serif;
+}
+.links-nav:hover {
+  color: #77bce6;
+}
+.links-nav.active {
+  color: #77bce6;
 }
 @media (max-width: 576px) {
   .details-title {
@@ -79,6 +123,18 @@ p {
   }
   .pargraph {
     font-size: 10px;
+  }
+  .title-about {
+    position: absolute;
+    top: 60%;
+    left: 4%;
+    font-size: 15px;
+  }
+  .title {
+    font-size: 20px;
+  }
+  .btn-send-sellers {
+    font-size: 12px;
   }
 }
 @media (min-width: 768px) {

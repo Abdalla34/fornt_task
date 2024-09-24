@@ -1,10 +1,12 @@
 <template>
   <div class="about">
     <div class="background-hand margin-about-section">
-      <div class="image-about">
+      <div class="image-sec-background">
         <img class="w-100" src="../assets/img-about_1.jpg" alt="" />
       </div>
-      <h1 class="text-uppercase text-light title-about">About Northstar</h1>
+      <h1 class="text-uppercase text-light title-sec-backgeound">
+        About Northstar
+      </h1>
     </div>
     <div class="container">
       <div class="about-proudact margin-about-section">
@@ -151,19 +153,8 @@ export default {
 };
 </script>
 <style scoped>
-.background-hand {
-  position: relative;
-}
 .margin-about-section {
   margin-bottom: 100px;
-}
-.image-about img {
-  width: 100%;
-}
-.title-about {
-  position: absolute;
-  top: 67%;
-  left: 14%;
 }
 .btn-spiceal {
   position: absolute;
@@ -183,12 +174,6 @@ export default {
   margin-top: 30px;
 }
 @media (max-width: 578px) {
-  .title-about {
-    position: absolute;
-    top: 60%;
-    left: 4%;
-    font-size: 15px;
-  }
   .name-margin {
     margin-top: 0;
   }

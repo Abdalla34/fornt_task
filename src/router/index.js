@@ -2,7 +2,10 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import HomeVue from "../views/HomeVue.vue";
 import AboutView from "../views/AboutView.vue";
-// import ProductView from "../views/ProductView.vue";
+import ContactUs from "../views/ContactUs.vue";
+import ProudactsAll from "../views/ProudactsAll.vue";
+import CartPage from "../views/Cart.vue";
+import ChekOut from "../views/ChekOut.vue";
 
 Vue.use(VueRouter);
 
@@ -17,11 +20,26 @@ const routes = [
     name: "AboutView",
     component: AboutView,
   },
-  // {
-  //   path: "/product/:id",
-  //   name: "ProductView",
-  //   component: ProductView,
-  // },
+  {
+    path: "/contact",
+    name: "ContactUs",
+    component: ContactUs,
+  },
+  {
+    path: "/ProudactsAll",
+    name: "ProudactsAll",
+    component: ProudactsAll,
+  },
+  {
+    path: "/CartPage",
+    name: "CartPage",
+    component: CartPage,
+  },
+  {
+    path: "/ChekOut",
+    name: "ChekOut",
+    component: ChekOut,
+  },
 ];
 
 const router = new VueRouter({
