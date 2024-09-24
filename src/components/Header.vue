@@ -89,7 +89,7 @@
           </div>
         </div>
       </div>
-      <div class="menu-side" v-if="sidetoggle">
+      <div class="menu-side" :class="{ 'right-0': transition }">
         <ul class="links-side pt-3">
           <li class="li-text text-end p-2" @click.prevent="toggleside()">
             <router-link class="links-nav" exact-active-class="active" to="/">
@@ -123,13 +123,13 @@ export default {
   name: "HeaderApp",
   data: () => {
     return {
-      sidetoggle: false,
+      transition: false,
       navHeader: true,
     };
   },
   methods: {
     toggleside() {
-      this.sidetoggle = !this.sidetoggle;
+      this.transition = !this.transition;
     },
   },
 };
@@ -164,13 +164,13 @@ export default {
 }
 .menu-side {
   position: absolute;
-  right: 0;
+  right: -1000px;
   z-index: 5;
   background-color: #fff;
   width: 250px;
   height: 100vh;
   box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
-  transition: transform 0.5s ease-in-out;
+  transition: all 1s;
 }
 .li-text {
   font-size: 12px;
@@ -185,5 +185,9 @@ export default {
   .fa-bars {
     display: none;
   }
+}
+.right-0 {
+  right: 0 !important;
+  transition: all 0.3s;
 }
 </style>
