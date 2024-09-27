@@ -21,7 +21,6 @@
                   </router-link>
                 </li>
                 <li>
-                  <!-- <a class="links-nav" href="/about">About</a> -->
                   <router-link
                     class="links-nav"
                     exact-active-class="active"
@@ -37,31 +36,6 @@
                     to="/contact"
                     >Contact Us</router-link
                   >
-                </li>
-                <li>
-                  <!-- <router-link
-                    class="links-nav"
-                    exact-active-class="active"
-                    to="/ProudactsAll"
-                    >ProudactsAll</router-link
-                  >
-                </li> -->
-                  <!-- <li>
-                  <router-link
-                    exact-active-class="active"
-                    class="links-nav"
-                    to="CartPage"
-                    >Cart</router-link
-                  >
-                </li> -->
-                  <!-- <li>
-                  <router-link
-                    exact-active-class="active"
-                    to="chekout"
-                    class="links-nav"
-                    >chek-out</router-link
-                  >
-                </li> -->
                 </li>
               </ul>
             </div>
@@ -188,6 +162,6 @@ export default {
 }
 .right-0 {
   right: 0 !important;
-  transition: all 0.3s;
+  transition: all 0.5s;
 }
 </style>

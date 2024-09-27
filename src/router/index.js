@@ -26,7 +26,7 @@ const routes = [
     component: ContactUs,
   },
   {
-    path: "/ProudactsAll",
+    path: "/product/:id",
     name: "ProudactsAll",
     component: ProudactsAll,
   },

@@ -3,11 +3,11 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-6 col-sm-12">
-          <img class="w-100" src="../assets/img_1.png" alt="" />
+          <img class="w-100 width-image" :src="product.image" alt="" />
         </div>
         <div class="col-lg-6 col-sm-12">
           <div class="text-start">
-            <ul class="links d-flex gap-1">
+            <!-- <ul class="links d-flex gap-1">
               <li>
                 <router-link to="/" class="links-nav">home /</router-link>
               </li>
@@ -20,9 +20,11 @@
               <li>
                 <router-link to="" class="links-nav">Shop</router-link>
               </li>
-            </ul>
+            </ul> -->
             <div class="name-shirt">
-              <h1 class="title text-capitalize">plain white Shirt</h1>
+              <h1 class="title text-capitalize fs-6">
+                {{ product.title.substring(0, 20) }}
+              </h1>
               <svg
                 width="15"
                 height="14"
@@ -86,11 +88,9 @@
               </svg>
               <span class="span fw-bold">(15)</span>
             </div>
-            <div class="identifiction mt-4">
-              <p class="pargraph">
-                A classic t-shirt never goes out of style. This is our most
-                premium collection of shirt. This plain white shirt is made up
-                of pure cotton and has a premium finish.
+            <div class="identifiction">
+              <p class="pargraph mt-4 fs-6">
+                {{ product.description }}
               </p>
             </div>
             <div class="select-size mt-5 margin">
@@ -124,9 +124,7 @@
               </button>
             </div>
             <div class="details-shirt mt-5">
-              <p class="pargraph w-50">
-                Category: Women, Polo, Casual Tags: Modern, Design, cotton
-              </p>
+              <p class="pargraph w-50">Category:{{ product.category }}</p>
             </div>
           </div>
         </div>
@@ -135,8 +133,27 @@
   </div>
 </template>
 <script>
+import axios from "axios";
 export default {
   name: "SingleProudact",
+  data: () => {
+    return {
+      product: {},
+    };
+  },
+  methods: {
+    async productGet() {
+      await axios
+        .get(`https://fakestoreapi.com/products/${this.$route.params.id}`)
+        .then((res) => {
+          console.log(res.data);
+          this.product = res.data;
+        });
+    },
+  },
+  async mounted() {
+    this.productGet();
+  },
 };
 </script>
 <style scoped>
@@ -146,9 +163,15 @@ export default {
 .links {
   margin: 10px auto 10px;
 }
+.width-image {
+  height: 600px;
+}
 @media (max-width: 578px) {
   .select-size {
     font-size: 12px;
+  }
+  .width-image {
+    height: 300px;
   }
   .links {
     font-size: 12px;

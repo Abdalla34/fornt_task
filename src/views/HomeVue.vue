@@ -17,49 +17,20 @@
           <p class="pargraph">Recently added shirts!</p>
         </div>
         <div class="row">
-          <div class="col-sm-12 col-md-4 col-lg-3 pb-4">
-            <img
-              class="animations w-100"
-              src="../assets/image_girl.png"
-              alt=""
-            />
-            <h3 class="name-proudact">Name</h3>
-            <p class="salary">$95.00</p>
-          </div>
-          <div class="col-sm-12 col-md-4 col-lg-3 pb-4">
-            <img class="animations w-100" src="../assets/girl_2.png" alt="" />
-            <h3 class="name-proudact">Name</h3>
-            <p class="salary">$95.00</p>
-          </div>
-          <div class="col-sm-12 col-md-4 col-lg-3 pb-4">
-            <img class="animations w-100" src="../assets/image_2.png" alt="" />
-            <h3 class="name-proudact">Name</h3>
-            <p class="salary">$95.00</p>
-          </div>
-          <div class="col-sm-12 col-md-4 col-lg-3 pb-4">
-            <img class="animations w-100" src="../assets/image _3.png" alt="" />
-            <h3 class="name-proudact">Name</h3>
-            <p class="salary">$95.00</p>
-          </div>
-          <div class="col-sm-12 col-md-4 col-lg-3 pb-4">
-            <img class="animations w-100" src="../assets/image_4.png" alt="" />
-            <h3 class="name-proudact">Name</h3>
-            <p class="salary">$95.00</p>
-          </div>
-          <div class="col-sm-12 col-md-4 col-lg-3 pb-4">
-            <img class="animations w-100" src="../assets/image _5.png" alt="" />
-            <h3 class="name-proudact">Name</h3>
-            <p class="salary">$95.00</p>
-          </div>
-          <div class="col-sm-12 col-md-4 col-lg-3 pb-4">
-            <img class="animations w-100" src="../assets/image_7.png" alt="" />
-            <h3 class="name-proudact">Name</h3>
-            <p class="salary">$95.00</p>
-          </div>
-          <div class="col-sm-12 col-md-4 col-lg-3 pb-4">
-            <img class="animations w-100" src="../assets/image_6.png" alt="" />
-            <h3 class="name-proudact">Name</h3>
-            <p class="salary">$95.00</p>
+          <div
+            class="col-sm-12 col-md-4 col-lg-3 pb-4"
+            v-for="product in products"
+            :key="product.id"
+          >
+            <router-link :to="`/product/${product.id}`">
+              <img
+                class="animations image-container pe-auto w-100"
+                :src="product.image"
+              />
+            </router-link>
+
+            <h3 class="name-proudact">{{ product.title.substring(0, 15) }}</h3>
+            <p class="salary">${{ product.price }}</p>
           </div>
         </div>
       </div>
@@ -188,24 +159,26 @@
   </div>
 </template>
 <script>
-// import axios from "axios";
+import axios from "axios";
 export default {
   name: "HomeVue",
-  // data: () => {
-  //   return {
-  //     products: [],
-  //   };
-  // },
-  // methods: {
-  //   async fetchProducts() {
-  //     await axios
-  //       .get("https://fakestoreapi.com/products")
-  //       .then((res) => (this.products = res.data));
-  //   },
-  // },
-  // mounted() {
-  //   this.fetchProducts();
-  // },
+  data: () => {
+    return {
+      products: [],
+    };
+  },
+  methods: {
+    async getAllProduct() {
+      await axios
+        .get(`https://fakestoreapi.com/products?limit=20`)
+        .then((res) => {
+          this.products = res.data;
+        });
+    },
+  },
+  async mounted() {
+    this.getAllProduct();
+  },
 };
 </script>
 <style scoped>
@@ -215,6 +188,7 @@ export default {
   background-image: url("@/assets/image_home.png");
   background-size: cover;
   background-position: center;
+  position: relative;
 }
 .text-color {
   color: #ffffff;
@@ -363,5 +337,9 @@ export default {
   .btn-shop {
     font-size: 20px;
   }
+}
+.image-container {
+  cursor: pointer;
+  height: 250px;
 }
 </style>
