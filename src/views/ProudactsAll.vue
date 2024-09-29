@@ -1,14 +1,14 @@
 <template>
   <div class="SingleWoman">
-    <SingleProudact />
+    <SingleProduct />
   </div>
 </template>
 <script>
-import SingleProudact from "../components/ShirtProudact.vue";
+import SingleProduct from "../components/SingleProduct.vue";
 export default {
   name: "ProudactsAll",
   components: {
-    SingleProudact,
+    SingleProduct,
   },
 };
 </script>

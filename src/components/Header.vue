@@ -44,13 +44,16 @@
             <div
               class="icons-header d-flex align-items-center justify-content-end gap-3"
             >
-              <div class="icon">
+              <div class="icon position-relative">
                 <button class="link-icon" href="">
                   <i class="fa-regular fa-user"></i>
                 </button>
               </div>
               <div class="icon">
-                <button class="link-icon" href="">
+                <button class="link-icon position-relative" href="">
+                  <div class="data" v-if="abogabalCart && abogabalCart.length">
+                    {{ abogabalCart.length }}
+                  </div>
                   <i class="fa-solid fa-bag-shopping"></i>
                 </button>
               </div>
@@ -99,12 +102,24 @@ export default {
     return {
       transition: false,
       navHeader: true,
+      data: [],
     };
+  },
+  computed: {
+    abogabalCart() {
+      return this.$store.state.cart;
+    },
   },
   methods: {
     toggleside() {
       this.transition = !this.transition;
     },
+  },
+  async mounted() {
+    const savedCart = localStorage.getItem("cart");
+    if (savedCart) {
+      this.$store.dispatch("updateCart", JSON.parse(savedCart)); // dispatch action to update value in the store
+    }
   },
 };
 </script>
@@ -148,6 +163,20 @@ export default {
 }
 .li-text {
   font-size: 12px;
+}
+.data {
+  position: absolute;
+  color: white;
+  background-color: #024e82;
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 9px;
+  right: -10px;
+  top: -2px;
 }
 
 @media (max-width: 992px) {

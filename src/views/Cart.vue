@@ -2,37 +2,44 @@
   <div class="Cart">
     <div class="container">
       <div class="row">
-        <div class="col-sm-12 col-lg-3 col-md-6 hand-col">
-          <div class="hand-cart margin-bottom">
-            <h1 class="text-capitalize title pb-2">proudact</h1>
-            <p class="text-capitalize fs-6 p-cart">plain white shitrt</p>
-          </div>
-        </div>
-        <div class="col-sm-12 col-lg-3 col-md-6 hand-col">
-          <div class="hand-cart margin-bottom">
-            <h1 class="text-capitalize title pb-2">price</h1>
-            <p class="text-capitalize fs-6 p-cart">plain white shitrt</p>
-          </div>
-        </div>
-        <div class="col-sm-12 col-lg-3 col-md-6 hand-col">
-          <div class="hand-cart margin-bottom">
-            <h1 class="text-capitalize title pb-2">quantity</h1>
-            <p class="text-capitalize fs-6 p-cart">plain white shitrt</p>
-          </div>
-        </div>
-        <div class="col-sm-12 col-lg-3 col-md-6 hand-col">
-          <div class="hand-cart margin-bottom">
-            <h1 class="text-capitalize title pb-2">total</h1>
-            <p class="text-capitalize fs-6 p-cart">plain white shitrt</p>
-          </div>
+        <div class="col-8">
+          <table>
+            <tr>
+              <div>
+                <th>product</th>
+              </div>
+              <div>
+                <th>product</th>
+              </div>
+              <div>
+                <th>product</th>
+              </div>
+            </tr>
+          </table>
         </div>
       </div>
     </div>
   </div>
 </template>
 <script>
+// import axios from "axios";
 export default {
   name: "CartPage",
+  data: () => {
+    return {
+      cart: {},
+    };
+  },
+  // methods: {
+  //   async getCartSingle() {
+  //     await axios.get(`https://fakestoreapi.com/carts/5`).then((res) => {
+  //       this.cart = res.data;
+  //     });
+  //   },
+  // },
+  // async mounted() {
+  //   this.getCartSingle();
+  // },
 };
 </script>
 <style scoped>

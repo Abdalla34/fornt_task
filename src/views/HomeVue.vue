@@ -19,17 +19,17 @@
         <div class="row">
           <div
             class="col-sm-12 col-md-4 col-lg-3 pb-4"
-            v-for="product in products"
+            v-for="product in products.latest_products"
             :key="product.id"
           >
-            <router-link :to="`/product/${product.id}`">
+            <router-link :to="`product/${product.id}`">
               <img
                 class="animations image-container pe-auto w-100"
-                :src="product.image"
+                src="@/assets/img_1.png"
               />
             </router-link>
 
-            <h3 class="name-proudact">{{ product.title.substring(0, 15) }}</h3>
+            <h3 class="name-proudact">{{ product.name }}</h3>
             <p class="salary">${{ product.price }}</p>
           </div>
         </div>
@@ -168,16 +168,16 @@ export default {
     };
   },
   methods: {
-    async getAllProduct() {
+    async getProductLatest() {
       await axios
-        .get(`https://fakestoreapi.com/products?limit=20`)
+        .get("https://gabal-ecommerce-api.vercel.app/api/home")
         .then((res) => {
           this.products = res.data;
         });
     },
   },
   async mounted() {
-    this.getAllProduct();
+    this.getProductLatest();
   },
 };
 </script>
@@ -219,6 +219,7 @@ export default {
 .salary {
   color: #024e82;
   font-size: 15px;
+  font-weight: 600;
 }
 /* End BackGround */
 /* start Boxes Buy Now */

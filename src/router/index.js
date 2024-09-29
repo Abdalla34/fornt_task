@@ -31,7 +31,7 @@ const routes = [
     component: ProudactsAll,
   },
   {
-    path: "/CartPage",
+    path: "/Cart",
     name: "CartPage",
     component: CartPage,
   },
