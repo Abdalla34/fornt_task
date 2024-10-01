@@ -21,8 +21,10 @@
                 <router-link to="" class="links-nav">Shop</router-link>
               </li>
             </ul> -->
-            <div class="name-shirt mt-2">
-              <h1 class="title text-capitalize fs-4">{{ singlePro.name }}</h1>
+            <div class="name-shirt mt-5">
+              <h1 class="title text-capitalize fs-4">
+                {{ product.name }}
+              </h1>
               <svg
                 width="15"
                 height="14"
@@ -85,14 +87,10 @@
                 />
               </svg>
               <span class="span fw-bold">(15)</span>
-              <div class="price mt-2 fs-3">${{ singlePro.price }}</div>
+              <div class="price mt-5 fs-3">${{ product.price }}</div>
             </div>
             <div class="identifiction">
-              <p class="pargraph mt-2">
-                A classic t-shirt never goes out of style. This is our most
-                premium collection of shirt. This plain white shirt is made up
-                of pure cotton and has a premium finish.
-              </p>
+              <p class="pargraph mt-4 fs-6"></p>
             </div>
             <div class="select-size mt-5 margin">
               <select name="" id="" class="p-2 select">
@@ -119,22 +117,13 @@
             </div>
             <div class="btn-cart opacity">
               <button
-                @click.prevent="addToCart()"
                 class="btn-add-cart btn-send-sellers mt-5 text-light text-uppercase"
               >
                 add to cart
               </button>
-              <button
-                @click.prevent="createOrder()"
-                class="btn-add-cart btn-send-sellers mt-5 text-light text-uppercase"
-              >
-                createOrder
-              </button>
             </div>
             <div class="details-shirt mt-5">
-              <p class="pargraph w-50">
-                Category : {{ singlePro.description }}
-              </p>
+              <p class="pargraph w-50">Category:{{ product.description }}</p>
             </div>
           </div>
         </div>
@@ -148,48 +137,22 @@ export default {
   name: "SingleProduct",
   data: () => {
     return {
-      singlePro: {},
-      cart: [],
+      product: {},
     };
   },
   methods: {
-    async getSingleProduct() {
+    async getProduct() {
       await axios
         .get(
           `https://gabal-ecommerce-api.vercel.app/api/single-product?id=${this.$route.params.id}`
         )
         .then((res) => {
-          this.singlePro = res.data[0];
+          this.product = res.data[0];
         });
-    },
-    async addToCart() {
-      this.cart.push(this.singlePro);
-      localStorage.setItem("cart", JSON.stringify(this.cart));
-      this.$store.dispatch("updateCart", this.cart); // dispatch action to update value in the store
-    },
-    async createOrder() {
-      const response = await axios.post(
-        `https://gabal-ecommerce-api.vercel.app/api/create-order`,
-        {
-          total: 200,
-          order_items: [
-            {
-              product_id: "a94a443a-339a-43e2-bec9-05c5c4c160a9",
-              quantity: 2,
-              price: 100,
-            },
-          ],
-        }
-      );
-      console.log(response);
     },
   },
   async mounted() {
-    this.getSingleProduct();
-    const savedCart = localStorage.getItem("cart");
-    if (savedCart) {
-      this.cart = JSON.parse(savedCart);
-    }
+    this.getProduct();
   },
 };
 </script>

@@ -45,17 +45,17 @@
               class="icons-header d-flex align-items-center justify-content-end gap-3"
             >
               <div class="icon position-relative">
+                <div class="data"></div>
                 <button class="link-icon" href="">
                   <i class="fa-regular fa-user"></i>
                 </button>
               </div>
               <div class="icon">
-                <button class="link-icon position-relative" href="">
-                  <div class="data" v-if="abogabalCart && abogabalCart.length">
-                    {{ abogabalCart.length }}
-                  </div>
-                  <i class="fa-solid fa-bag-shopping"></i>
-                </button>
+                <router-link to="/Cart">
+                  <button class="link-icon" href="">
+                    <i class="fa-solid fa-bag-shopping"></i>
+                  </button>
+                </router-link>
               </div>
               <div class="icon">
                 <button @click.prevent="toggleside()" class="link-icon">
@@ -96,6 +96,7 @@
   </div>
 </template>
 <script>
+// import axios from "axios";
 export default {
   name: "HeaderApp",
   data: () => {
@@ -103,24 +104,21 @@ export default {
       transition: false,
       navHeader: true,
       data: [],
+      // visitId: "",
     };
   },
-  computed: {
-    abogabalCart() {
-      return this.$store.state.cart;
-    },
-  },
-  methods: {
-    toggleside() {
-      this.transition = !this.transition;
-    },
-  },
-  async mounted() {
-    const savedCart = localStorage.getItem("cart");
-    if (savedCart) {
-      this.$store.dispatch("updateCart", JSON.parse(savedCart)); // dispatch action to update value in the store
-    }
-  },
+  //   methods: {
+  //   async getCartSingle() {
+  //     await axios.get(`https://fakestoreapi.com/carts/id=${this.visitId}`).then((res) => {
+  //       this.cart = res.data;
+  //     });
+  //   },
+  // },
+
+  // mounted() {
+  //   let visit_id = localStorage.getItem("visit_id");
+  //   this.visitId = visit_id
+  // },
 };
 </script>
 <style scoped>
@@ -175,8 +173,7 @@ export default {
   align-items: center;
   justify-content: center;
   font-size: 9px;
-  right: -10px;
-  top: -2px;
+  right: -39px;
 }
 
 @media (max-width: 992px) {
