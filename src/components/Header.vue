@@ -45,7 +45,7 @@
               class="icons-header d-flex align-items-center justify-content-end gap-3"
             >
               <div class="icon position-relative">
-                <div class="data"></div>
+                <div class="data">{{ counterCart }}</div>
                 <button class="link-icon" href="">
                   <i class="fa-regular fa-user"></i>
                 </button>
@@ -97,6 +97,7 @@
 </template>
 <script>
 // import axios from "axios";
+import { mapGetters } from "vuex";
 export default {
   name: "HeaderApp",
   data: () => {
@@ -107,6 +108,11 @@ export default {
       // visitId: "",
     };
   },
+  methods: {
+    toggleside() {
+      this.transition = !this.transition;
+    },
+  },
   //   methods: {
   //   async getCartSingle() {
   //     await axios.get(`https://fakestoreapi.com/carts/id=${this.visitId}`).then((res) => {
@@ -114,6 +120,9 @@ export default {
   //     });
   //   },
   // },
+  computed: {
+    ...mapGetters(["counterCart"]),
+  },
 
   // mounted() {
   //   let visit_id = localStorage.getItem("visit_id");
@@ -122,6 +131,12 @@ export default {
 };
 </script>
 <style scoped>
+.header-parent {
+  width: 100%;
+  position: fixed;
+  z-index: 20;
+  background-color: #ffff;
+}
 .nav-list {
   display: flex;
   gap: 12px;
@@ -152,7 +167,7 @@ export default {
 .menu-side {
   position: absolute;
   right: -1000px;
-  z-index: 5;
+  z-index: 50;
   background-color: #fff;
   width: 250px;
   height: 100vh;

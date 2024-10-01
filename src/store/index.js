@@ -3,7 +3,20 @@ import Vuex from "vuex";
 
 Vue.use(Vuex);
 
-export default new Vuex.Store({});
+export default new Vuex.Store({
+  state: {
+    CartItems: JSON.parse(localStorage.getItem("CartItems")) || [],
+  },
+  mutations: {
+    getSingleProduct(state, product) {
+      state.CartItems.push(product);
+      localStorage.setItem("CartItems", JSON.stringify(state.CartItems));
+    },
+  },
+  getters: {
+    counterCart: (state) => state.CartItems.length,
+  },
+});
 
 // state: {
 //   cartItems: JSON.parse(localStorage.getItem("cartItems")) || [],

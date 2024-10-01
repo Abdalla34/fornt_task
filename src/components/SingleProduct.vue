@@ -1,5 +1,5 @@
 <template>
-  <div class="shirt-proudact">
+  <div class="shirt-proudact mt-5">
     <div class="container">
       <div class="row">
         <div class="col-lg-6 col-sm-12">
@@ -117,6 +117,7 @@
             </div>
             <div class="btn-cart opacity">
               <button
+                @click="addToCArt"
                 class="btn-add-cart btn-send-sellers mt-5 text-light text-uppercase"
               >
                 add to cart
@@ -133,6 +134,7 @@
 </template>
 <script>
 import axios from "axios";
+import { mapMutations } from "vuex";
 export default {
   name: "SingleProduct",
   data: () => {
@@ -150,6 +152,10 @@ export default {
           this.product = res.data[0];
         });
     },
+    addToCArt() {
+      this.getSingleProduct(this.product);
+    },
+    ...mapMutations(["getSingleProduct"]),
   },
   async mounted() {
     this.getProduct();
