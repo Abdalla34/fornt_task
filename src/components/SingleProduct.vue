@@ -3,24 +3,14 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-6 col-sm-12">
-          <img class="w-100 width-image" src="@/assets/about_mans.png" alt="" />
+          <img
+            class="w-100 width-image"
+            src="@/assets/about_womns.png"
+            alt=""
+          />
         </div>
         <div class="col-lg-6 col-sm-12">
           <div class="text-start">
-            <!-- <ul class="links d-flex gap-1">
-              <li>
-                <router-link to="/" class="links-nav">home /</router-link>
-              </li>
-              <li>
-                <router-link to="" class="links-nav">Shop /</router-link>
-              </li>
-              <li>
-                <router-link to="" class="links-nav">Woman /</router-link>
-              </li>
-              <li>
-                <router-link to="" class="links-nav">Shop</router-link>
-              </li>
-            </ul> -->
             <div class="name-shirt mt-5">
               <h1 class="title text-capitalize fs-4">
                 {{ product.name }}
@@ -90,7 +80,11 @@
               <div class="price mt-5 fs-3">${{ product.price }}</div>
             </div>
             <div class="identifiction">
-              <p class="pargraph mt-4 fs-6"></p>
+              <p class="pargraph mt-4">
+                A classic t-shirt never goes out of style. This is our most
+                premium collection of shirt. This plain white shirt is made up
+                of pure cotton and has a premium finish.
+              </p>
             </div>
             <div class="select-size mt-5 margin">
               <select name="" id="" class="p-2 select">
@@ -115,17 +109,28 @@
                 <option value="">Extra Large</option>
               </select>
             </div>
-            <div class="btn-cart opacity">
+            <div class="btn-cart">
               <button
-                @click="addToCArt"
-                class="btn-add-cart btn-send-sellers mt-5 text-light text-uppercase"
+                @click="addToCart()"
+                class="btn-add-cart btn-send-sellers mt-5 text-light opacity"
               >
                 add to cart
               </button>
+              <button
+                @click="removeCart()"
+                v-if="btnMessage"
+                class="btn-remove-cart text-light btn-send-sellers mt-3 opacity"
+              >
+                Remove from cart
+              </button>
+            </div>
+            <div class="message" v-if="btnMessage">
+              تمت الاضافه الي المشتريات
             </div>
             <div class="details-shirt mt-5">
               <p class="pargraph w-50">Category:{{ product.description }}</p>
             </div>
+            <!-- <input type="number" v-model.number="product.quantity"/> -->
           </div>
         </div>
       </div>
@@ -140,6 +145,7 @@ export default {
   data: () => {
     return {
       product: {},
+      btnMessage: false,
     };
   },
   methods: {
@@ -149,20 +155,35 @@ export default {
           `https://gabal-ecommerce-api.vercel.app/api/single-product?id=${this.$route.params.id}`
         )
         .then((res) => {
-          this.product = res.data[0];
+          this.product = res.data;
         });
     },
-    addToCArt() {
-      this.getSingleProduct(this.product);
+    addToCart() {
+      this.ADD_TO_CART(this.product);
+      this.btnMessage = true;
+      localStorage.setItem(`btnMessage_${this.product.id}`, true);
     },
-    ...mapMutations(["getSingleProduct"]),
+    removeCart() {
+      this.REMOVE_FROM_CART(this.product.id);
+      this.btnMessage = false;
+      localStorage.removeItem(`btnMessage_${this.product.id}`);
+    },
+    ...mapMutations(["ADD_TO_CART", "REMOVE_FROM_CART"]),
   },
   async mounted() {
     this.getProduct();
+    let saveTest = localStorage.getItem(`btnMessage_${this.$route.params.id}`);
+    if (saveTest) {
+      this.btnMessage = true;
+    }
   },
 };
 </script>
 <style scoped>
+.btn-remove-cart {
+  background-color: red;
+  font-size: 14px;
+}
 .margin {
   margin-bottom: 100px;
 }
@@ -178,6 +199,11 @@ export default {
 .select {
   cursor: pointer;
 }
+.btn-cart {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
 @media (max-width: 578px) {
   .select-size {
     font-size: 12px;
@@ -190,6 +216,10 @@ export default {
     width: fit-content;
     margin: 10px auto 10px;
     text-align: center;
+  }
+  .btn-cart {
+    display: block;
+    font-size: 10px;
   }
 }
 </style>

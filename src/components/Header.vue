@@ -4,9 +4,11 @@
       <div class="parent-logo">
         <div class="row align-items-center">
           <div class="col-2">
-            <div class="nav-logo d-flex justify-content-left">
-              <h1 class="fw-400 title">NorthStar</h1>
-            </div>
+            <router-link to="/">
+              <div class="nav-logo d-flex justify-content-left">
+                <h1 class="fw-400 title">NorthStar</h1>
+              </div>
+            </router-link>
           </div>
           <div class="col-4">
             <div class="nav-up">
@@ -44,14 +46,14 @@
             <div
               class="icons-header d-flex align-items-center justify-content-end gap-3"
             >
-              <div class="icon position-relative">
-                <div class="data">{{ counterCart }}</div>
+              <div class="icon">
                 <button class="link-icon" href="">
                   <i class="fa-regular fa-user"></i>
                 </button>
               </div>
-              <div class="icon">
+              <div class="icon position-relative">
                 <router-link to="/Cart">
+                  <div class="data">{{ counterCart }}</div>
                   <button class="link-icon" href="">
                     <i class="fa-solid fa-bag-shopping"></i>
                   </button>
@@ -96,7 +98,6 @@
   </div>
 </template>
 <script>
-// import axios from "axios";
 import { mapGetters } from "vuex";
 export default {
   name: "HeaderApp",
@@ -104,7 +105,6 @@ export default {
     return {
       transition: false,
       navHeader: true,
-      data: [],
       // visitId: "",
     };
   },
@@ -113,6 +113,10 @@ export default {
       this.transition = !this.transition;
     },
   },
+
+  computed: {
+    ...mapGetters(["counterCart"]),
+  },
   //   methods: {
   //   async getCartSingle() {
   //     await axios.get(`https://fakestoreapi.com/carts/id=${this.visitId}`).then((res) => {
@@ -120,10 +124,6 @@ export default {
   //     });
   //   },
   // },
-  computed: {
-    ...mapGetters(["counterCart"]),
-  },
-
   // mounted() {
   //   let visit_id = localStorage.getItem("visit_id");
   //   this.visitId = visit_id
@@ -182,15 +182,17 @@ export default {
   color: white;
   background-color: #024e82;
   border-radius: 50%;
-  width: 16px;
-  height: 16px;
+  width: 20px;
+  height: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 9px;
-  right: -39px;
+  right: -9px;
 }
-
+.icon {
+  font-size: 25px;
+}
 @media (max-width: 992px) {
   .nav-list {
     display: none;

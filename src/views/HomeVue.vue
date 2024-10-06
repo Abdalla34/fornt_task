@@ -119,39 +119,24 @@
           <h1 class="title">Top Sellers</h1>
           <p class="pargraph">Browse our top-selling products</p>
         </div>
-        <div class="row mb-5">
-          <div class="col-sm-12 col-md-6 col-lg-3">
-            <img
-              class="animations w-100 mb-3"
-              src="../assets/Frame.1.png"
-              alt=""
-            />
-          </div>
-          <div class="col-sm-12 col-md-6 col-lg-3">
-            <img
-              class="animations w-100 mb-3"
-              src="../assets/girl_6.png"
-              alt=""
-            />
-          </div>
-          <div class="col-sm-12 col-md-6 col-lg-3">
-            <img
-              class="animations w-100 mb-3"
-              src="../assets/girl_5.png"
-              alt=""
-            />
-          </div>
-          <div class="col-sm-12 col-md-6 col-lg-3">
-            <img
-              class="animations w-100 mb-3"
-              src="../assets/girl_4.png"
-              alt=""
-            />
+        <div class="row">
+          <div
+            class="col-lg-3 col-md-4 col-sm-12"
+            v-for="product in products.top_sellers"
+            :key="product.id"
+          >
+            <router-link :to="`product/${product.id}`">
+              <img
+                class="animations image-container pe-auto w-100"
+                src="@/assets/about_mans.png"
+                alt=""
+              />
+            </router-link>
+            <h3 class="name-proudact">{{ product.name }}</h3>
+            <p class="salary">${{ product.price }}</p>
           </div>
         </div>
-        <button
-          class="btn-send-sellers opacity text-uppercase text-white opacity"
-        >
+        <button class="btn-send-sellers mt-5 text-uppercase text-white opacity">
           shop Now
         </button>
       </div>
@@ -169,11 +154,9 @@ export default {
   },
   methods: {
     async getProductLatest() {
-      await axios
-        .get("https://gabal-ecommerce-api.vercel.app/api/home")
-        .then((res) => {
-          this.products = res.data;
-        });
+      await axios.get("/api/home").then((res) => {
+        this.products = res.data;
+      });
     },
   },
   async mounted() {
