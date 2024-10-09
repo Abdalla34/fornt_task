@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/(.*)",
+      "destination": "https://gabal-ecommerce-api.vercel.app/api/$1"
+    }
+  ]
+}
