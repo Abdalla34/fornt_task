@@ -130,7 +130,6 @@
             <div class="details-shirt mt-5">
               <p class="pargraph w-50">Category:{{ product.description }}</p>
             </div>
-            <!-- <input type="number" v-model.number="product.quantity"/> -->
           </div>
         </div>
       </div>
@@ -170,10 +169,10 @@ export default {
     },
     ...mapMutations(["ADD_TO_CART", "REMOVE_FROM_CART"]),
   },
-  async mounted() {
+  mounted() {
     this.getProduct();
-    let saveTest = localStorage.getItem(`btnMessage_${this.$route.params.id}`);
-    if (saveTest) {
+    let saveBtn = localStorage.getItem(`btnMessage_${this.$route.params.id}`);
+    if (saveBtn) {
       this.btnMessage = true;
     }
   },

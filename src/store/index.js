@@ -39,57 +39,56 @@ Vue.use(Vuex);
 
 // export default new Vuex.Store({
 //   state: {
-//     CartItems: JSON.parse(localStorage.getItem("cartItems")) || [],
+//     cartItems: JSON.parse(localStorage.getItem("cartItems")) || [],
 //   },
 //   mutations: {
-//     Add_To_Cart(state, product) {
-//       let ifProduct = state.CartItems.find((pro) => pro.id === product.id);
+//     ADD_TO_CART(st, product) {
+//       let ifProduct = st.cartItems.find((item) => item.id === product.id);
 //       if (ifProduct) {
 //         ifProduct.quantity += 1;
 //       } else {
 //         let NewProduct = { ...product, quantity: 1 };
-//         state.CartItems.push(NewProduct);
+//         st.cartItems.push(NewProduct);
 //       }
-//       localStorage.setItem("cartItems", JSON.stringify(state.CartItems));
+//       localStorage.setItem("cartItems", JSON.stringify(st.cartItems));
 //     },
-//     REMOVE_FROM_CART(state, productid) {
-//       state.CartItems = state.CartItems.filter((pro) => pro.id !== productid);
-//       localStorage.setItem("cartItems", JSON.stringify(state.CartItems));
+//     REMOVE_FROM_CART(st, product) {
+//       st.cartItems = st.cartItems.filter((item) => item.id !== product);
+//       localStorage.setItem("cartItems", JSON.stringify(st.cartItems));
 //     },
-//     quantityUpdate(state, newQun) {
-//       let cartQuantity = state.CartItems.find((pro) => pro.id === newQun.id);
-//       if (cartQuantity) {
-//         cartQuantity.quantity = newQun.quantity;
+//     QuantityUpdate(state, product) {
+//       let newQua = state.cartItems.find((it) => it.id === product.id);
+//       if (newQua) {
+//         newQua.quantity = product.quantity;
+//         localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
 //       }
-//       localStorage.setItem("cartItems", JSON.stringify(state.CartItems));
 //     },
 //   },
 //   getters: {
-//     counterCart: (numCart) => numCart.CartItems.length,
+//     counterCart: (value) => value.cartItems.length,
 //   },
 // });
-
 export default new Vuex.Store({
   state: {
-    cartItems: JSON.parse(localStorage.getItem("cartItems")) || [],
+    CartItems: JSON.parse(localStorage.getItem("cartItems")) || [],
   },
   mutations: {
-    ADD_TO_CART(st, product) {
-      let ifProduct = st.cartItems.find((item) => item.id === product.id);
+    ADD_TO_CART(state, product) {
+      let ifProduct = state.CartItems.find((item) => item.id === product.id);
       if (ifProduct) {
         ifProduct.quantity += 1;
       } else {
         let NewProduct = { ...product, quantity: 1 };
-        st.cartItems.push(NewProduct);
+        state.CartItems.push(NewProduct);
       }
-      localStorage.setItem("cartItems", JSON.stringify(st.cartItems));
+      localStorage.setItem("cartItems", JSON.stringify(state.CartItems));
     },
     REMOVE_FROM_CART(st, product) {
-      st.cartItems = st.cartItems.filter((item) => item.id !== product);
-      localStorage.setItem("cartItems", JSON.stringify(st.cartItems));
+      st.CartItems = st.CartItems.filter((item) => item.id !== product);
+      localStorage.setItem("cartItems", JSON.stringify(st.CartItems));
     },
   },
   getters: {
-    counterCart: (value) => value.cartItems.length,
+    counterCart: (value) => value.CartItems.length,
   },
 });

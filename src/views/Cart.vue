@@ -4,69 +4,6 @@
       <!-- <table class="table mt-5">
         <thead>
           <tr>
-            <th scope="col">Product</th>
-            <th scope="col">Price</th>
-            <th scope="col">Quantity</th>
-            <th scope="col">Total</th>
-            <th scope="col">Delete</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="item in Allcart" :key="item.id">
-            <th scope="row">{{ item.name }}</th>
-            <td>{{ item.price }}</td>
-            <td>
-              <input
-                type="number"
-                style="width: 50px"
-                min="1"
-                @change="quantityTest(item)"
-                v-model.number="item.quantity"
-              />
-            </td>
-            <td>{{ (item.price * item.quantity).toFixed(2) }}</td>
-            <td>
-              <button class="remove opacity" @click="removeitem(item)">
-                remove
-              </button>
-            </td>
-          </tr>
-          <tr v-if="Allcart.length === 0">
-            <td colspan="6" class="text-center">Your cart is empty.</td>
-          </tr>
-        </tbody>
-      </table> -->
-      <!-- <div class="cart-mini-total mt-5">
-        <div class="totals text-start title">
-          <h4>Cart Totals</h4>
-        </div>
-        <div class="row">
-          <div class="col-lg-4 d-flex justify-content-between pt-3">
-            <h6 class="fw-bold text-capitalize">subtotal</h6>
-            <div class="pargraph fw-bold">$</div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-lg-4 d-flex justify-content-between pt-3">
-            <h6 class="fw-bold text-capitalize">shipping free</h6>
-            <div class="pargraph fw-bold text-uppercase">$FREE</div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-lg-4 d-flex justify-content-between pt-3">
-            <h6 class="fw-bold text-capitalize">total</h6>
-            <div class="pargraph fw-bold">$</div>
-          </div>
-        </div>
-      </div> -->
-      <!-- <div class="text-start mt-3 opacity">
-        <router-link to="ChekOut" class="cheak-out text-light p-2"
-          >Proceed to Checkout</router-link
-        >
-      </div> -->
-      <table class="table mt-5">
-        <thead>
-          <tr>
             <th scope="col" class="col details-cart">Product</th>
             <th scope="col" class="col details-cart">price</th>
             <th scope="col" class="col details-cart">quantity</th>
@@ -83,6 +20,7 @@
                 type="number"
                 style="width: 50px"
                 min="1"
+                @change="quantity(item)"
                 :max="item.stock"
                 v-model="item.stoke"
                 v-model.number="item.quantity"
@@ -99,8 +37,8 @@
             <td colspan="6" class="text-center">Your cart is empty.</td>
           </tr>
         </tbody>
-      </table>
-      <div class="cart-mini-total mt-5">
+      </table> -->
+      <!-- <div class="cart-mini-total mt-5">
         <div class="totals text-start title">
           <h4>Cart Totals</h4>
         </div>
@@ -122,6 +60,67 @@
             <div class="pargraph fw-bold">${{ totoPrice }}</div>
           </div>
         </div>
+      </div> -->
+      <table class="table mt-5">
+        <thead>
+          <tr>
+            <th class="col">Product</th>
+            <th class="col">Price</th>
+            <th class="col">quantity</th>
+            <th class="col">total</th>
+            <th class="col">delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="item in Allcart" :key="item.id">
+            <th scope="row">{{ item.name }}</th>
+            <td>${{ item.price }}</td>
+            <td>
+              <input
+                type="number"
+                style="width: 50px"
+                v-model.number="item.quantity"
+                min="1"
+                :max="item.stock"
+              />
+            </td>
+            <td>${{ (item.price * item.quantity).toFixed(2) }}</td>
+            <td><button @click="removeCart(item)"></button></td>
+          </tr>
+          <tr v-if="Allcart.length === 0">
+            <td colspan="6">Your cart is empty</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="cart-mini-total mt-5">
+        <div class="totals text-start title">
+          <h4>Cart Totals</h4>
+        </div>
+        <div class="row">
+          <div class="col-lg-4 d-flex justify-content-between pt-3">
+            <h6 class="fw-bold text-capitalize">subtotal</h6>
+            <div class="pargraph fw-bold">${{ totalPrice }}</div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-4 d-flex justify-content-between pt-3">
+            <h6 class="fw-bold text-capitalize">shipping free</h6>
+            <div class="pargraph fw-bold text-uppercase">$FREE</div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-4 d-flex justify-content-between pt-3">
+            <h6 class="fw-bold text-capitalize">total</h6>
+            <div class="pargraph fw-bold">${{ totalPrice }}</div>
+          </div>
+        </div>
+      </div>
+      <div class="text-start mt-4">
+        <router-link
+          to="ChekOut"
+          class="btn-chek btn-send-sellers text-light opacity"
+          >porceed to chekout</router-link
+        >
       </div>
     </div>
   </div>
@@ -129,6 +128,7 @@
 
 <script>
 import { mapMutations } from "vuex";
+// import { mapMutations } from "vuex";
 export default {
   name: "CartPage",
   data: () => {
@@ -137,32 +137,41 @@ export default {
     };
   },
   mounted() {
-    this.Allcart = this.$store.state.cartItems;
+    this.Allcart = this.$store.state.CartItems;
+    console.log(this.Allcart);
+  },
+  methods: {
+    removeCart(cart) {
+      this.$store.commit("REMOVE_FROM_CART", cart.id);
+      this.Allcart = this.$store.state.CartItems;
+    },
+    ...mapMutations(["REMOVE_FROM_CART"]),
   },
   computed: {
-    totoPrice() {
+    totalPrice() {
       return this.Allcart.reduce(
-        (v, it) => v + (it.price || 0) * (it.quantity || 0),
+        (val, item) => val + (item.price * item.quantity || 0),
         0
       ).toFixed(2);
     },
   },
-  methods: {
-    removed(cart) {
-      this.$store.commit("REMOVE_FROM_CART", cart.id);
-      this.Allcart = this.$store.state.cartItems;
-    },
-    ...mapMutations(["REMOVE_FROM_CART"]),
-  },
+  // computed: {
+  //   totoPrice() {
+  //     return this.Allcart.reduce(
+  //       (v, it) => v + (it.price || 0) * (it.quantity || 0),
+  //       0
+  //     ).toFixed(2);
+  //   },
+  // },
   // methods: {
-  //   removeitem(it) {
-  //     this.$store.commit("REMOVE_FROM_CART", it.id);
-  //     this.Allcart = this.$store.state.CartItems;
+  //   removed(cart) {
+  //     this.$store.commit("REMOVE_FROM_CART", cart.id);
+  //     this.Allcart = this.$store.state.cartItems;
   //   },
-  //   quantityTest(newqua) {
-  //     // Update the quantity in the Vuex store
-  //     this.$store.commit("quantityUpdate", newqua);
+  //   quantity(newQuan) {
+  //     this.$store.commit("QuantityUpdate", newQuan);
   //   },
+  //   ...mapMutations(["REMOVE_FROM_CART", "QuantityUpdate"]),
   // },
 };
 </script>
@@ -182,10 +191,6 @@ export default {
   color: white;
   background-color: rgb(236, 11, 11);
   border-radius: 20px;
-}
-.cheak-out {
-  background-color: #d6763c;
-  border: none;
 }
 @media (max-width: 768px) {
   .message {

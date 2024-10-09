@@ -108,14 +108,13 @@ export default {
       // visitId: "",
     };
   },
+  computed: {
+    ...mapGetters(["counterCart"]),
+  },
   methods: {
     toggleside() {
       this.transition = !this.transition;
     },
-  },
-
-  computed: {
-    ...mapGetters(["counterCart"]),
   },
   //   methods: {
   //   async getCartSingle() {
