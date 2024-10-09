@@ -25,7 +25,7 @@
             <router-link :to="`product/${product.id}`">
               <img
                 class="animations image-container pe-auto w-100"
-                src="@/assets/img_1.png"
+                :src="product.image_url"
               />
             </router-link>
 
