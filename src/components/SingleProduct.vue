@@ -3,11 +3,7 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-6 col-sm-12">
-          <img
-            class="w-100 width-image"
-            src="@/assets/about_womns.png"
-            alt=""
-          />
+          <img class="w-100 width-image" :src="product.image_url" alt="" />
         </div>
         <div class="col-lg-6 col-sm-12">
           <div class="text-start">
@@ -111,14 +107,14 @@
             </div>
             <div class="btn-cart">
               <button
-                @click="addToCart()"
+                @click="AddToCart()"
                 class="btn-add-cart btn-send-sellers mt-5 text-light opacity"
               >
                 add to cart
               </button>
               <button
-                @click="removeCart()"
-                v-if="btnMessage"
+                @click="RemovToCart()"
+                v-if="getCartItems.find((p) => p.id === product.id)"
                 class="btn-remove-cart text-light btn-send-sellers mt-3 opacity"
               >
                 Remove from cart
@@ -157,24 +153,23 @@ export default {
           this.product = res.data;
         });
     },
-    addToCart() {
+    AddToCart() {
       this.ADD_TO_CART(this.product);
       this.btnMessage = true;
-      localStorage.setItem(`btnMessage_${this.product.id}`, true);
     },
-    removeCart() {
+    RemovToCart() {
       this.REMOVE_FROM_CART(this.product.id);
       this.btnMessage = false;
-      localStorage.removeItem(`btnMessage_${this.product.id}`);
     },
     ...mapMutations(["ADD_TO_CART", "REMOVE_FROM_CART"]),
   },
+  computed: {
+    getCartItems() {
+      return this.$store.state.cartItems;
+    },
+  },
   mounted() {
     this.getProduct();
-    let saveBtn = localStorage.getItem(`btnMessage_${this.$route.params.id}`);
-    if (saveBtn) {
-      this.btnMessage = true;
-    }
   },
 };
 </script>

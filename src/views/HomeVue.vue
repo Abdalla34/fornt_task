@@ -128,7 +128,7 @@
             <router-link :to="`product/${product.id}`">
               <img
                 class="animations image-container pe-auto w-100"
-                src="@/assets/about_mans.png"
+                :src="product.image_url"
                 alt=""
               />
             </router-link>
@@ -325,5 +325,6 @@ export default {
 .image-container {
   cursor: pointer;
   height: 250px;
+  object-fit: cover;
 }
 </style>

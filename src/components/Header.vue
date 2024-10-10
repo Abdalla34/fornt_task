@@ -105,7 +105,6 @@ export default {
     return {
       transition: false,
       navHeader: true,
-      // visitId: "",
     };
   },
   computed: {
@@ -116,17 +115,6 @@ export default {
       this.transition = !this.transition;
     },
   },
-  //   methods: {
-  //   async getCartSingle() {
-  //     await axios.get(`https://fakestoreapi.com/carts/id=${this.visitId}`).then((res) => {
-  //       this.cart = res.data;
-  //     });
-  //   },
-  // },
-  // mounted() {
-  //   let visit_id = localStorage.getItem("visit_id");
-  //   this.visitId = visit_id
-  // },
 };
 </script>
 <style scoped>
@@ -195,6 +183,9 @@ export default {
 @media (max-width: 992px) {
   .nav-list {
     display: none;
+  }
+  .data {
+    top: 4px;
   }
 }
 @media (min-width: 992px) {

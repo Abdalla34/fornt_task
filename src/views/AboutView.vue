@@ -18,7 +18,9 @@
                 src="../assets/about_womns.png"
                 alt=""
               />
-              <button class="btn-buy text-uppercase btn-spiceal opacity">
+              <button
+                class="btn-send-sellers text-uppercase btn-spiceal opacity"
+              >
                 Buy Now
               </button>
             </div>
@@ -30,7 +32,9 @@
                 src="../assets/about_mans.png"
                 alt=""
               />
-              <button class="btn-buy text-uppercase btn-spiceal opacity">
+              <button
+                class="btn-send-sellers text-uppercase btn-spiceal opacity"
+              >
                 Buy Now
               </button>
             </div>
@@ -172,6 +176,10 @@ export default {
 }
 .name-margin {
   margin-top: 30px;
+}
+.btn-spiceal {
+  background-color: white;
+  color: #024e82;
 }
 @media (max-width: 578px) {
   .name-margin {

@@ -76,18 +76,16 @@ p {
   width: 100%;
 }
 
-.btn-buy {
-  color: #024e82;
-  padding: 8px 15px;
-  border-radius: 15px;
-  border: none;
-}
 .btn-send-sellers {
   background-color: #024e82;
   padding: 10px 18px;
   border: none;
   border-radius: 16px;
   text-transform: uppercase;
+}
+.btn-chek {
+  background-color: #d6763c;
+  border-radius: 0;
 }
 .input-hover:hover {
   border-color: #47a9ea;
