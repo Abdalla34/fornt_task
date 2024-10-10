@@ -108,14 +108,14 @@
             <div class="btn-cart">
               <button
                 @click="AddToCart()"
-                class="btn-add-cart btn-send-sellers mt-5 text-light opacity"
+                class="btn-add-cart btn-send-sellers text-light opacity"
               >
                 add to cart
               </button>
               <button
                 @click="RemovToCart()"
                 v-if="getCartItems.find((p) => p.id === product.id)"
-                class="btn-remove-cart text-light btn-send-sellers mt-3 opacity"
+                class="btn-remove-cart mt text-light btn-send-sellers mt-3 opacity"
               >
                 Remove from cart
               </button>
@@ -123,7 +123,7 @@
             <div class="message" v-if="btnMessage">
               تمت الاضافه الي المشتريات
             </div>
-            <div class="details-shirt mt-5">
+            <div class="details-shirt mt">
               <p class="pargraph w-50">Category:{{ product.description }}</p>
             </div>
           </div>
@@ -198,6 +198,9 @@ export default {
   align-items: flex-end;
   justify-content: space-between;
 }
+.mt {
+  margin-top: 40px;
+}
 @media (max-width: 578px) {
   .select-size {
     font-size: 12px;
@@ -214,6 +217,9 @@ export default {
   .btn-cart {
     display: block;
     font-size: 10px;
+  }
+  .mt {
+    margin-top: 20px;
   }
 }
 </style>

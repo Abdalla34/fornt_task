@@ -84,9 +84,9 @@
           to make alternate arrangements.
         </p>
       </div>
-      <div class="btn-done-order text-end mt-5">
+      <div class="btn-done-order text-end mt-5" @click="OrderMessage()">
         <button
-          @click="OrderMessage()"
+          @click="sendorder()"
           class="btn-chek btn-send-sellers text-light opacity"
         >
           place order
@@ -102,6 +102,7 @@
   </div>
 </template>
 <script>
+import axios from "axios";
 export default {
   name: "ChekOut",
   data: () => {
@@ -125,6 +126,17 @@ export default {
   methods: {
     OrderMessage() {
       this.messageOrder = !this.messageOrder;
+    },
+    sendorder() {
+      const orderItems = this.subProducts.map((product) => ({
+        product_id: product.id,
+        quantity: product.quantity,
+        price: product.price,
+      }));
+      axios.post("https://gabal-ecommerce-api.vercel.app/api/create-order", {
+        total: this.totalAmount,
+        order_items: orderItems,
+      });
     },
   },
 };
