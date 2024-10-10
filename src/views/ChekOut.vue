@@ -96,6 +96,7 @@
         <span class="span text-uppercase text-white"
           >Order placed successfully 🙌</span
         >
+        <span @click="OrderMessage()" class="close">X</span>
       </div>
     </div>
   </div>
@@ -143,8 +144,30 @@ export default {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 200;
+  z-index: 100;
   background-color: #d6763c;
   padding: 40px 60px;
+}
+.close {
+  color: black;
+  cursor: pointer;
+  position: absolute;
+  top: 45%;
+  left: 68%;
+  z-index: 120;
+  width: 30px;
+  border-radius: 20px;
+  background-color: white;
+}
+@media (max-width: 578px) {
+  .span {
+    padding: 39px;
+    font-size: 12px;
+    width: 300px;
+  }
+  .close {
+    left: 90%;
+    margin-top: 22px;
+  }
 }
 </style>
