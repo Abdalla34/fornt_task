@@ -48,9 +48,9 @@ const router = new VueRouter({
   routes,
   scrollBehavior(to, from, savedPosition) {
     if (savedPosition) {
-      return savedPosition; // لو فيه position محفوظ زي لما ترجع للخلف
+      return savedPosition;         
     } else {
-      return { x: 0, y: 0 }; // بيرجع الصفحة لأعلى
+      return { x: 0, y: 0 }; 
     }
   },
 });
