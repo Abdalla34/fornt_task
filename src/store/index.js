@@ -31,6 +31,11 @@ export default new Vuex.Store({
     },
   },
   getters: {
-    counterCart: (value) => value.cartItems.length,
+    counterCart: (value) => {
+      return value.cartItems.reduce(
+        (state, prodcut) => state + prodcut.quantity,
+        0
+      );
+    },
   },
 });
